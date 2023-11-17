@@ -27,7 +27,7 @@ export class EmployeeCreateComponent {
         this.employeeService.createNewEmployee(employee).subscribe((response: HttpResponse<any>) => {
           if(response.status != 200 || response.body == null)
           {
-            alert(`There was an error loading data from server. Status code: ${response.status}`)
+            alert(`There was an error loading data from server. Status: ${response.status}`)
           }
           else
           {
@@ -35,9 +35,17 @@ export class EmployeeCreateComponent {
             this.communicator.addCreatedEmployeeToList(employee)
           }
         }, (error: HttpErrorResponse) => {
-          alert(`There was an error creating new employee. Error: ${error.message}`)
+          if(error.status == 429)
+        {
+          alert("You have to wait for few moments because of server settings. Status: 429")
+        }
+        else
+        {
+          alert(`There was an error loading data from server. Error: ${error.message}`)
+        }
         });
-        this.communicator.makeEmployeeCreationReload();
+        //can't implement this method because of server responding 429(too many requests in a given amount of time)
+        //this.communicator.makeEmployeeCreationReload();
         this.id++;
         this.name = "";
         this.age = 0;

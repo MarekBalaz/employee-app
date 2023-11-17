@@ -11,10 +11,10 @@ export class CommunicatorService {
   public employeeDetailSubscriber$ = this.employeeDetailObserver.asObservable();
 
   employeeCreationObserver = new Subject();
-  public employeeCreationObserver$ = this.employeeDetailObserver.asObservable();
+  public employeeCreationObserver$ = this.employeeCreationObserver.asObservable();
 
   employeeAdditionObserver = new Subject();
-  public employeeAdditionObserver$ = this.employeeDetailObserver.asObservable();
+  public employeeAdditionObserver$ = this.employeeAdditionObserver.asObservable();
 
   getEmployeeDetail(id: number) {
     this.employeeDetailObserver.next(id);

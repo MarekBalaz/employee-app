@@ -26,10 +26,17 @@ export class EmployeeDetailComponent {
           }
           else
           {
-            alert(`There was an error loading data from server. Status code: ${response.status}`)
+            alert(`There was an error loading data from server. Status: ${response.status}`)
           }
         }, (error: HttpErrorResponse) => {
-          alert(`There was an error loading data from server. Error: ${error.message}`)
+          if(error.status == 429)
+          {
+            alert("You have to wait for few moments because of server settings. Status: 429")
+          }
+          else
+          {
+            alert(`There was an error loading data from server. Error: ${error.message}`)
+          }
         })
       });
     }
