@@ -1,0 +1,33 @@
+<div class="list">
+  <div class="row p-20">
+    <div class="col"><app-employee-detail></app-employee-detail></div>
+    <div class="col pe-20"><app-employee-create></app-employee-create></div>
+  </div>
+  <h4>Filter</h4>
+      <div class="btn-group">
+        <button type="button" (click)="orderByAge(true)" class="btn btn-primary">By age ascending</button>
+        <button type="button" (click)="orderByAge(false)" class="btn btn-primary">By age descending</button>
+        <button type="button" (click)="filterBySalary(true)" class="btn btn-primary">Higher then selected salary</button>
+        <button type="button" (click)="filterBySalary(false)" class="btn btn-primary">Lower then selected salary</button>
+        <input type="number" name="salary" placeholder="Enter salary for filtering" [(ngModel)]="salaryFilter">
+  
+  </div>
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of publicAccEmployees" style="cursor: pointer">
+            <td>{{employee.id}}</td>
+            <td (click)="getEmployeeDetail(employee.id)">{{employee.employee_name}}</td>
+            <td>{{employee.employee_age}}</td>
+            <td>{{employee.employee_salary}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
